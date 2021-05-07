@@ -84,6 +84,11 @@
 .menu-icon {
     display: none;
 }
+
+.link-menu {
+    text-decoration: none;
+    color: black;
+}
   
 @media screen and (max-width: 960px) {
     .NavbarItems {

@@ -73,17 +73,17 @@ function NavBar() {
                     <ul className={ click ? 'nav-menu active' : 'nav-menu'}>
                         <li className="nav-item">
                             <Link to='/' className='nav-links' onClick={closeMobileMenu}>
-                                Inicio
+                                <b>Inicio</b>
                             </Link>
                         </li>
                         <li className="nav-item">
                             <Link to='/products' className='nav-links' onClick={closeMobileMenu}>
-                                Productos
+                                <b>Productos</b>
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link classActive="active" to='/contact' className='nav-links' onClick={closeMobileMenu} active>
-                                Contacto
+                            <Link to='/contact' className='nav-links' onClick={closeMobileMenu}>
+                                <b>Contacto</b>
                             </Link>
                         </li>
                         <li className="nav-item">
@@ -105,7 +105,7 @@ function NavBar() {
                                 <Paper>
                                     <ClickAwayListener onClickAway={closeMobileMenu}>
                                     <MenuList onClick={closeMobileMenu}  autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                        <MenuItem onClick={closeMobileMenu}><Link to='/login'>Ingresar</Link></MenuItem>
+                                        <MenuItem onClick={closeMobileMenu}><Link className="link-menu" to='/login'>Ingresar</Link></MenuItem>
                                         <MenuItem onClick={closeMobileMenu}>My account</MenuItem>
                                         <MenuItem onClick={closeMobileMenu}>Logout</MenuItem>
                                     </MenuList>
