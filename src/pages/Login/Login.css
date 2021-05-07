@@ -1,0 +1,25 @@
+.container {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid rgb(238, 27, 150);
+    padding: 40px;
+    background-color: white;
+}
+
+.container-form {
+    text-align: center;
+}
+
+.img-login {
+    height: 60px;
+}
+
+.container-button {
+    margin-top: 15px;
+}
+
+.button {
+    width: 100%;
+}
