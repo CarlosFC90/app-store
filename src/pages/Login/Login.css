@@ -32,3 +32,27 @@
 .button {
     width: 100%;
 }
+
+@media screen and (max-width: 1024px) {
+    .container-login {
+        margin: 25px 280px;
+    }
+}
+
+@media screen and (max-width: 960px) {
+    .container-login {
+        margin: 25px 180px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container-login {
+        margin: 25px 80px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .container-login {
+        margin: 25px 5px;
+    }
+}

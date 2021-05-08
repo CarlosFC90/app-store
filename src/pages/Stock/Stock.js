@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Grid, Input } from '@material-ui/core';
+import { Button, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import './Stock.css';
 import SaveIcon from '@material-ui/icons/Save';
@@ -24,6 +24,12 @@ import EditIcon from '@material-ui/icons/Edit';
 
 function Stock() {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [img, setImg] = useState(null);
+    const [name, setName] = useState('');
+    const [category, setCategory] = useState('');
+
+    const [nameError, setNameError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -36,6 +42,7 @@ function Stock() {
     const useStyles = makeStyles((theme) => ({
         root: {
           width: '100%',
+          border: '1px solid rgba(0, 0, 0, .125)',
         },
         heading: {
           fontSize: theme.typography.pxToRem(15),
@@ -65,6 +72,39 @@ function Stock() {
     }))(TableRow);
 
     const classes = useStyles();
+
+    const handleUploadImg = e => {
+        setImg(e.target.files[0]);
+        console.log(setImg);
+    }
+
+    const loadProductToFirebase = () => {
+        setLoading(true);
+        let newProduct = {
+            name: name,
+            category: category,
+            image: false,
+            info: {},
+        };
+    }
+
+    const submitNewShop = () => {
+        // Realizar validaciones
+        setNameError(false);
+        if (name.length <= 0) {
+            setNameError(true);
+        } else {
+            // No hubo problemas
+            setNameError(false);
+            loadProductToFirebase();
+        }
+    }
+
+    const cleanForm = () => {
+        setName('');
+        setCategory('');
+        setImg(null);
+    }
 
     return (
         <div className='stock-container'>
@@ -118,9 +158,17 @@ function Stock() {
                         </Grid>
                         <Grid item xs={12} md={3}>
                             <div className='form-right'>
-                                <Grid container spacing={1}>
+                                <Grid item sm={12}>
                                     <h4>INGRESAR IMAGEN</h4>
-                                    <Input type='file'/>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        component="label"
+                                    >
+                                        Cargar imagen &nbsp; <i className="far fa-image"></i>
+                                    <input style={{ display: "none" }} type="file" id="image" name="image" accept="image/png, image/jpeg" onChange={e => setImg(e.target.files[0])} />
+                                    </Button>
+                                    <span style={{ marginLeft: 5 }}>{img ? img.name : null}</span>
                                 </Grid>
                             </div>
                         </Grid>
@@ -135,6 +183,7 @@ function Stock() {
                             Guardar
                         </Button>
                     </div>
+                    
                 </div>
             </div>
             <div className='acordion-container'>
@@ -145,7 +194,6 @@ function Stock() {
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel1a-content"
                         id="panel1a-header"
-                        className="acordion-header"
                         >
                         <Typography className={classes.heading}><b>Electrodomesticos</b></Typography>
                         </AccordionSummary>
@@ -263,7 +311,7 @@ function Stock() {
                             </TableContainer>
                         </AccordionDetails>
                     </Accordion>
-                    <Accordion className='acordion'>
+                    <Accordion>
                         <AccordionSummary
                         expandIcon={<ExpandMoreIcon />}
                         aria-controls="panel2a-content"

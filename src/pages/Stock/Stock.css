@@ -92,8 +92,63 @@
 
 .acordion-header {
     height: 60px;
-    background-color: rgb(130, 138, 146);
+    background-color: rgb(136, 177, 218);
     margin-bottom: 10px;
+}
+
+.prevImg {
+    height: 100px;
+    width: 100px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+@media screen and (max-width: 960px) {
+    .form-left {
+        padding: 15px 20px 15px 20px;
+        text-align: center;
+    }
+
+    .form-center {
+        padding: 20px 20px 15px 20px;
+        text-align: center;
+    }
+
+    .form-right {
+        padding: 20px 20px 15px 20px;
+        text-align: center;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .stock-container {
+        padding: 0px;
+    }
+
+    .card {
+        margin: 0px 5px;
+    }
+
+    .form-left {
+        padding: 15px 20px 15px 20px;
+        text-align: center;
+    }
+
+    .form-center {
+        padding: 20px 20px 15px 20px;
+        text-align: center;
+    }
+
+    .form-right {
+        padding: 20px 20px 15px 20px;
+        text-align: center;
+    }
+
+    .acordion-container {
+        margin: 0px 5px;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
