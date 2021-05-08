@@ -10,7 +10,7 @@ const Footer = () => {
                 <div className='row-footer'>
                     <div className='footer-col'>
                         <Link to='/'>
-                            <img src={Logo} class="img-fluid" alt="Logo"/>
+                            <img src={Logo} className="img-fluid" alt="Logo"/>
                         </Link>
                         <h5>Online Shopping</h5>
                         <h5>&copy;{new Date().getFullYear()}</h5>

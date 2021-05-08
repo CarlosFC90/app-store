@@ -74,11 +74,11 @@ function Stock() {
                     <div className='card-title'><h1>Ingreso de Productos</h1></div>
                     <hr/>
                     <Grid container spacing={2}>
-                        <Grid item xs={6}>
+                        <Grid item xs={12} md={6}>
                             <div className='form-left'>
                                 <TextField className='textfield-row' id="name-art" label="Nombre de Articulo" variant="outlined" />
                                 <Grid container spacing={1}>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={12} md={6}>
                                         <Button className='button-cate' color="secondary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                                             Categorias &nbsp;<i className="fas fa-chevron-down"></i>
                                         </Button>
@@ -96,13 +96,13 @@ function Stock() {
                                             <MenuItem onClick={handleClose}>Jardineria</MenuItem>
                                         </Menu>
                                     </Grid>
-                                    <Grid item xs={6}>
+                                    <Grid item xs={12} md={6}>
                                         <TextField className='textfield' id="price-art" label="Precio" variant="outlined" />
                                     </Grid>
                                 </Grid>
                             </div>
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={12} md={3}>
                             <div className='form-center'>
                                 <Grid container spacing={1}>
                                     <TextField
@@ -116,7 +116,7 @@ function Stock() {
                                 </Grid>
                             </div>
                         </Grid>
-                        <Grid item xs={3}>
+                        <Grid item xs={12} md={3}>
                             <div className='form-right'>
                                 <Grid container spacing={1}>
                                     <h4>INGRESAR IMAGEN</h4>
