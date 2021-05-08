@@ -8,9 +8,9 @@
 }
 
 .card {
-    background-color: rgb(214, 212, 212);
+    background-color: rgb(255, 248, 248);
     border: 1px solid black;
-    margin: 0px 100px;
+    margin: 0px 80px;
     border-radius: 10px;
 }
 
@@ -18,7 +18,7 @@
     text-align: center;
     padding: 10px;
     background-color: rgb(241, 183, 224);
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 .form-left {
@@ -32,16 +32,66 @@
 }
 
 .form-left .textfield-row {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
     width: 100%;
 }
 
-.form-right {
-    padding: 15px 20px 15px 5px;
+.form-center {
+    padding: 20px 20px 15px 5px;
     text-align: center;
+}
+
+.form-right {
+    padding: 20px 20px 15px 5px;
+    text-align: center;
+}
+
+.form-right h4 {
+    margin-bottom: 10px;
+    text-align: center;
+    font-weight: 700;
+    border: 1px solid black;
+    width: 100%;
+    padding: 5px;
 }
 
 .button-save {
     padding: 15px;
     text-align: center;
+}
+
+.button-cate {
+    width: 100%;
+    color: rgb(182, 47, 47);
+    margin-top: 15px;
+    height: 55px;
+    border: 1px solid black;
+}
+
+.button-cate:hover {
+    color: rgb(240, 49, 49);
+}
+
+.menu-button-cate {
+    width: 100%;
+}
+
+.acordion-container {
+    margin: 0px 80px;
+    padding: 20px 0px;
+}
+
+.title-category {
+    text-align: center;
+    font-weight: 400;
+    margin-bottom: 20px;
+    border: 1px solid black;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.acordion-header {
+    height: 60px;
+    background-color: rgb(130, 138, 146);
+    margin-bottom: 10px;
 }

@@ -106,7 +106,7 @@ function NavBar() {
                                     <ClickAwayListener onClickAway={closeMobileMenu}>
                                     <MenuList onClick={closeMobileMenu}  autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
                                         <MenuItem onClick={closeMobileMenu}><Link className="link-menu" to='/login'>Ingresar</Link></MenuItem>
-                                        <MenuItem onClick={closeMobileMenu}>Registrar</MenuItem>
+                                        <MenuItem onClick={closeMobileMenu}><Link className="link-menu" to='/register'>Registrar</Link></MenuItem>
                                         <MenuItem onClick={closeMobileMenu}><Link className="link-menu" to='/stock'>Ingresar Articulo</Link></MenuItem>
                                         <MenuItem onClick={closeMobileMenu}>Logout</MenuItem>
                                     </MenuList>
