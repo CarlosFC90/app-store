@@ -13,7 +13,7 @@
     background-color: rgb(235, 235, 235);
 }
 
-.sale-container h2 {
+.sale-container .title-sale {
     text-align: center;
     font-weight: 500;
     border: 1px solid black;

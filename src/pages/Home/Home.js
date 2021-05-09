@@ -32,7 +32,7 @@ const Home = () => {
             <div className='info'>
                 <h2 className='title-home'>Bienvenid@!!</h2>
                 <div className='sale-container'>
-                    <h2><u>OFERTAS DESTACADAS</u></h2>
+                    <h2 className='title-sale'>OFERTAS DESTACADAS</h2>
                     <Grid container spacing={3} style={{padding: '25px 15px'}}>
                         <Grid item xs={12} md={4}>
                             <Card className={classes.root}>
@@ -134,7 +134,7 @@ const Home = () => {
                             </Card>
                         </Grid>
                     </Grid>
-                    <h2><u>PRODUCTOS DESTACADOS</u></h2>
+                    <h2 className='title-sale'>PRODUCTOS DESTACADOS</h2>
                     <Grid container spacing={3} style={{padding: '25px 15px'}}>
                         <Grid item xs={12} md={4} >
                             <Card className={classes.root}>

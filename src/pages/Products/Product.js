@@ -28,11 +28,11 @@ const Product = () => {
     return (
         <div className='products-container'>
             <div className='banner-container'>
-                <img src={ImgBanner} alt=""/>
+                <img src={ImgBanner} alt="Img Banner"/>
                 <h2>PRODUCTOS</h2>
             </div>
             <div className='products-sale'>
-                <Grid container spacing={1}>
+                <Grid container spacing={1} styles={{ margin: '0px', padding: '0px'}}>
                     <Grid item xs={12} md={2}>
                        <div className='cate-section'>
                            <h2>VER</h2>
