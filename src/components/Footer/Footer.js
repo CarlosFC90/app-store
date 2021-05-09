@@ -16,7 +16,7 @@ const Footer = () => {
                         <h5>&copy;{new Date().getFullYear()}</h5>
                     </div>
                     <div className='footer-col'>
-                        <h3>Pages</h3>
+                        <h3>Secciones</h3>
                         <ul>
                             <li><Link to='/' className='link'><b>Home</b></Link><br/></li>
                             <li><Link to='/products' className='link'><b>Productos</b></Link><br/></li>
@@ -25,13 +25,13 @@ const Footer = () => {
                         </ul>
                     </div>
                     <div className='footer-col'>
-                        <h3>Contact</h3>
+                        <h3>Contacto</h3>
                         <h4>Bs. As., Argentina</h4>
                         <h4>+5492234556677</h4>
                         <h4>Bolivar 2200</h4>
                     </div>
                     <div className='footer-col'>
-                        <h3>Social Media</h3>
+                        <h3>Redes Sociales</h3>
                         <div className='social-links'>
                             <Link to='/' className='socialLink'><i className="fab fa-instagram"></i></Link>
                             <Link to='/' className='socialLink'><i className="fab fa-facebook-square"></i></Link>

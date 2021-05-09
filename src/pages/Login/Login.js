@@ -3,6 +3,7 @@ import './Login.css';
 import Button from '@material-ui/core/Button';
 import Logo from '../../assets/images/shopping-logo.jpg'; 
 import { Input } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 
 class Login extends Component {
@@ -51,6 +52,7 @@ class Login extends Component {
                         <div className='container-button'>
                             <Button className='button' variant="contained" color="primary">Iniciar Sesión</Button>
                         </div>
+                        <p style={{marginTop: '7px'}}>No tenés una cuenta? -- <Link to='/register' style={{textDecoration: 'none'}}>Registrar</Link></p>
                     </div>
                 </div>
             </div>

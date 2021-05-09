@@ -11,6 +11,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import ReactPaginate from 'react-paginate';
 
 const useStyles = makeStyles({
     root: {
@@ -47,6 +48,18 @@ const Product = () => {
                        </div> 
                     </Grid>
                     <Grid item xs={12} md={10}>
+                        <div className='pagination-container'>
+                            <ReactPaginate
+                                previousLabel={'previous'}
+                                nextLabel={'next'}
+                                breakLabel={'...'}
+                                breakClassName={'break-me'}
+                                marginPagesDisplayed={2}
+                                pageRangeDisplayed={5}
+                                containerClassName={'pagination'}
+                                activeClassName={'active'}
+                            />
+                        </div>
                         <Grid container spacing={2} style={{ padding: '25px 15px'}}>
                             <Grid item xs={12} sm={6} md={4}>
                                 <Card className={classes.root}>
@@ -74,7 +87,7 @@ const Product = () => {
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <Button size="small" color="primary" variant="outlined" style={{width: '100%'}}>
-                                                    <i class="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
+                                                    <i className="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
                                                 </Button>
                                             </Grid>                                      
                                         </Grid>
@@ -107,7 +120,7 @@ const Product = () => {
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <Button size="small" color="primary" variant="outlined" style={{width: '100%'}}>
-                                                    <i class="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
+                                                    <i className="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
                                                 </Button>
                                             </Grid>                                      
                                         </Grid>
@@ -140,7 +153,7 @@ const Product = () => {
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <Button size="small" color="primary" variant="outlined" style={{width: '100%'}}>
-                                                    <i class="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
+                                                    <i className="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
                                                 </Button>
                                             </Grid>                                      
                                         </Grid>
@@ -175,7 +188,7 @@ const Product = () => {
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <Button size="small" color="primary" variant="outlined" style={{width: '100%'}}>
-                                                    <i class="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
+                                                    <i className="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
                                                 </Button>
                                             </Grid>                                      
                                         </Grid>
@@ -208,7 +221,7 @@ const Product = () => {
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <Button size="small" color="primary" variant="outlined" style={{width: '100%'}}>
-                                                    <i class="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
+                                                    <i className="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
                                                 </Button>
                                             </Grid>                                      
                                         </Grid>
@@ -276,7 +289,7 @@ const Product = () => {
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <Button size="small" color="primary" variant="outlined" style={{width: '100%'}}>
-                                                    <i class="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
+                                                    <i className="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
                                                 </Button>
                                             </Grid>                                      
                                         </Grid>
@@ -309,7 +322,7 @@ const Product = () => {
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <Button size="small" color="primary" variant="outlined" style={{width: '100%'}}>
-                                                    <i class="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
+                                                    <i className="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
                                                 </Button>
                                             </Grid>                                      
                                         </Grid>
@@ -342,7 +355,7 @@ const Product = () => {
                                             </Grid>
                                             <Grid item xs={6}>
                                                 <Button size="small" color="primary" variant="outlined" style={{width: '100%'}}>
-                                                    <i class="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
+                                                    <i className="fas fa-clipboard-list" style={{ paddingBottom: '2px'}}></i> &nbsp;Detalles
                                                 </Button>
                                             </Grid>                                      
                                         </Grid>
@@ -350,6 +363,18 @@ const Product = () => {
                                 </Card>
                             </Grid>
                         </Grid>
+                        <div className='pagination-container'>
+                            <ReactPaginate
+                                previousLabel={'previous'}
+                                nextLabel={'next'}
+                                breakLabel={'...'}
+                                breakClassName={'break-me'}
+                                marginPagesDisplayed={2}
+                                pageRangeDisplayed={5}
+                                containerClassName={'pagination'}
+                                activeClassName={'active'}
+                            />
+                        </div>
                     </Grid>
                 </Grid>
             </div>
