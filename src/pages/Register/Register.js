@@ -16,7 +16,7 @@ const Register = () => {
                     <Input 
                         className='form-control' 
                         type='text'
-                        name='name'
+                        name='firstName'
                     />
                     <br/>
                     <br/>

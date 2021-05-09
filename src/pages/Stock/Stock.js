@@ -118,72 +118,77 @@ function Stock() {
                     <div className='card'>
                         <div className='card-title'><h1>Ingreso de Productos</h1></div>
                         <hr/>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} md={6}>
-                                <div className='form-left'>
-                                    <TextField className='textfield-row' id="name-art" label="Nombre de Articulo" variant="outlined" />
-                                    <Grid container spacing={1}>
-                                        <Grid item xs={12} md={6}>
-                                            <Button className='button-cate' color="secondary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                                                Categorias &nbsp;<i className="fas fa-chevron-down"></i>
-                                            </Button>
-                                            <Menu
-                                                id="simple-menu"
-                                                anchorEl={anchorEl}
-                                                keepMounted
-                                                open={Boolean(anchorEl)}
-                                                onClose={handleClose}
-                                                className='menu-button-cate'
+                        <form>
+                            <Grid container spacing={2}>
+                                <Grid item xs={12} md={6}>
+                                    <div className='form-left'>
+                                        <TextField className='textfield-row' id="name-art" name="name" label="Nombre de Articulo" variant="outlined" />
+                                        <Grid container spacing={1}>
+                                            <Grid item xs={12} md={6}>
+                                                <Button className='button-cate' color="secondary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                                                    Categorias &nbsp;<i className="fas fa-chevron-down"></i>
+                                                </Button>
+                                                <Menu
+                                                    id="simple-menu"
+                                                    anchorEl={anchorEl}
+                                                    keepMounted
+                                                    open={Boolean(anchorEl)}
+                                                    onClose={handleClose}
+                                                    className='menu-button-cate'
+                                                    name="category"
+                                                >
+                                                    <MenuItem onClick={handleClose} value={'Electrodomestico'}>Electrodomesticos</MenuItem>
+                                                    <MenuItem onClick={handleClose} value={'Informatica'}>Informática</MenuItem>
+                                                    <MenuItem onClick={handleClose} value={'Hogar'}>Hogar</MenuItem>
+                                                    <MenuItem onClick={handleClose} value={'Jardineria'}>Jardineria</MenuItem>
+                                                </Menu>
+                                            </Grid>
+                                            <Grid item xs={12} md={6}>
+                                                <TextField className='textfield' id="price-art" label="Precio" name="price" variant="outlined" />
+                                            </Grid>
+                                        </Grid>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12} md={3}>
+                                    <div className='form-center'>
+                                        <Grid container spacing={1}>
+                                            <TextField
+                                                id="outlined-multiline-static"
+                                                label="Descripción del Producto"
+                                                multiline
+                                                rows={4}
+                                                variant="outlined"
+                                                className='textfield'
+                                                name="description"
+                                            />
+                                        </Grid>
+                                    </div>
+                                </Grid>
+                                <Grid item xs={12} md={3}>
+                                    <div className='form-right'>
+                                        <Grid item sm={12}>
+                                            <h4>INGRESAR IMAGEN</h4>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                component="label"
                                             >
-                                                <MenuItem onClick={handleClose}>Electrodomesticos</MenuItem>
-                                                <MenuItem onClick={handleClose}>Informática</MenuItem>
-                                                <MenuItem onClick={handleClose}>Hogar</MenuItem>
-                                                <MenuItem onClick={handleClose}>Jardineria</MenuItem>
-                                            </Menu>
+                                                Cargar imagen &nbsp; <i className="far fa-image"></i>
+                                            <input style={{ display: "none" }} type="file" id="image" name="image" accept="image/png, image/jpeg" onChange={e => setImg(e.target.files[0])} />
+                                            </Button>
+                                            <span style={{ marginLeft: 5 }}>{img ? img.name : null}</span>
                                         </Grid>
-                                        <Grid item xs={12} md={6}>
-                                            <TextField className='textfield' id="price-art" label="Precio" variant="outlined" />
-                                        </Grid>
-                                    </Grid>
-                                </div>
+                                    </div>
+                                </Grid>
                             </Grid>
-                            <Grid item xs={12} md={3}>
-                                <div className='form-center'>
-                                    <Grid container spacing={1}>
-                                        <TextField
-                                            id="outlined-multiline-static"
-                                            label="Descripción del Producto"
-                                            multiline
-                                            rows={4}
-                                            variant="outlined"
-                                            className='textfield'
-                                        />
-                                    </Grid>
-                                </div>
-                            </Grid>
-                            <Grid item xs={12} md={3}>
-                                <div className='form-right'>
-                                    <Grid item sm={12}>
-                                        <h4>INGRESAR IMAGEN</h4>
-                                        <Button
-                                            variant="contained"
-                                            color="primary"
-                                            component="label"
-                                        >
-                                            Cargar imagen &nbsp; <i className="far fa-image"></i>
-                                        <input style={{ display: "none" }} type="file" id="image" name="image" accept="image/png, image/jpeg" onChange={e => setImg(e.target.files[0])} />
-                                        </Button>
-                                        <span style={{ marginLeft: 5 }}>{img ? img.name : null}</span>
-                                    </Grid>
-                                </div>
-                            </Grid>
-                        </Grid>
+                        </form>
                         <div className='button-save'>
                             <Button
                                 variant="contained"
                                 color="primary"
                                 size="large"
                                 startIcon={<SaveIcon />}
+                                type="submit"
                             >
                                 Guardar
                             </Button>
