@@ -4,4 +4,18 @@
 
 .container-home h2 {
     text-align: center;
+    padding: 20px;
+    font-weight: 600;
+}
+
+.sale-container {
+    padding: 30px 80px 50px 80px;
+    background-color: rgb(235, 235, 235);
+}
+
+.sale-container h2 {
+    text-align: center;
+    font-weight: 500;
+    border: 1px solid black;
+    padding: 5px 0px;
 }

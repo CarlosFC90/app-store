@@ -1,4 +1,67 @@
 .products-container {
     text-align: center;
-    margin: 20px;
+}
+
+.banner-container img{
+    width: 100%;
+    height: 300px;
+    position: relative;
+}
+
+.banner-container h2{
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    text-align: center;
+    font-size: 70px;
+    font-weight: 700;
+}
+
+.products-sale {
+    padding: 30px;
+    background-color: rgb(228, 228, 228);
+}
+
+.cate-section {
+    padding: 10px 20px;
+}
+
+.cate-section h2 {
+    margin-top: 10px;
+    font-weight: 500;
+}
+
+.cate-section p {
+    text-align: left;
+    margin-left: 7px;
+    padding: 5px;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 960px) {
+    
+}
+
+@media screen and (max-width: 768px) {
+    .banner-container img{
+        height: 200px;
+    }
+
+    .banner-container h2{
+        top: 30%;
+        left: 20%;
+        font-size: 50px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .banner-container img{
+        height: 200px;
+    }
+
+    .banner-container h2{
+        top: 30%;
+        left: 20%;
+        font-size: 30px;
+    }
 }

@@ -10,8 +10,11 @@ function HeroSection() {
             <h1>Online Shopping</h1>
             <p>Bienvenido al shopping online con los precios más bajos del pais</p>
             <div className='hero-btns'>
-                <Button 
-                    className='btns'
+                <Button
+                    variant="contained" 
+                    color="primary"
+                    size="large" 
+                    href="/products"
                 >
                     VER PRODUCTOS <i className="fas fa-chevron-right"></i>
                 </Button>
