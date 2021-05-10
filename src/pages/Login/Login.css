@@ -33,6 +33,11 @@
     width: 100%;
 }
 
+.alert-message {
+    width: 100%;
+    margin: 15px 0px;
+}
+
 @media screen and (max-width: 1024px) {
     .container-login {
         margin: 25px 280px;

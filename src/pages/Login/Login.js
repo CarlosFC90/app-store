@@ -4,14 +4,28 @@ import Button from '@material-ui/core/Button';
 import Logo from '../../assets/images/shopping-logo.jpg'; 
 import { Input } from '@material-ui/core';
 import { Link } from 'react-router-dom';
-
+import {urlApi, apiKey} from '../../Services/ApiRest';
+import axios from 'axios';
+import Alert from '@material-ui/lab/Alert';
 
 class Login extends Component {
+
+    constructor(props) {
+        super(props);
+
+    }
+    
     state = {
         form: {
-            email: '',
-            password: ''
-        }
+            "email": '',
+            "password": ''
+        },
+        error: false,
+        errorMsg: ""
+    }
+    
+    handleSubmit = e => {
+        e.preventDefault();
     }
     
     handleChange = async e => {
@@ -21,15 +35,40 @@ class Login extends Component {
                 [e.target.name]: e.target.value
             }
         });
-        console.log(this.state.form);
+        //console.log(this.state.form);
     }
-
+    
+    handleButton = () => {
+        let url = urlApi + apiKey;
+        axios.post(url, this.state.form)
+        .then( res => {
+            if (res.status === 200) {
+                console.log(res);
+                localStorage.setItem("token", res.data.idToken);
+                this.props.history.push('/');
+            }
+        }).catch( error => {
+            console.log(error);
+            this.setState({
+                error: true,
+                errorMsg: 'Email no encontrado o contraseña erronea'
+            })
+        })
+    }
+    
+    
     render() {
+
         return (
             <div className='container-login'>
+                { this.state.error === true && 
+                    <div className='alert-message'>
+                        <Alert severity="error">{this.state.errorMsg}</Alert>
+                    </div>
+                }
                 <div className='container-form'>
                     <img src={Logo} className="img-login" alt=""/>
-                    <form action="/new-user" method="POST">
+                    <form onSubmit={this.handleSubmit}>
                         <div className='form-group'>
                             <label><b>Email: </b></label>
                             <br/>
@@ -51,7 +90,7 @@ class Login extends Component {
                             />
                             <br/>
                             <div className='container-button'>
-                                <Button className='button' variant="contained" color="primary">Iniciar Sesión</Button>
+                                <Button onClick={this.handleButton} className='button' type='submit' variant="contained" color="primary">Iniciar Sesión</Button>
                             </div>
                             <p style={{marginTop: '7px'}}>No tenés una cuenta? -- <Link to='/register' style={{textDecoration: 'none'}}>Registrar</Link></p>
                         </div>

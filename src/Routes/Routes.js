@@ -15,7 +15,7 @@ function Routes() {
     <BrowserRouter>
       <Navbar/>
       <Switch>
-        <Route path='/' exact component={Home} />
+        <Route path='/' exact component={Home} render= { props => (<Home { ...props}/>)}/>
         <Route path='/login' exact component={Login} />
         <Route path='/stock' exact component={Stock} />
         <Route path='/contact' exact component={Contact} />
