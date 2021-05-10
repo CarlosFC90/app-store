@@ -8,6 +8,11 @@
     font-weight: 600;
 }
 
+.info .title-home {
+    font-weight: 800;
+    font-size: 50px;
+}
+
 .sale-container {
     padding: 30px 80px 50px 80px;
     background-color: rgb(235, 235, 235);
@@ -19,4 +24,23 @@
     border: 1px solid black;
     padding: 5px 0px;
     background-color: rgb(240, 96, 180);
+}
+
+.carousel-container {
+    padding: 40px 30px;
+}
+
+.item:active {
+    outline: none;
+    border: none;
+}
+
+.item:hover {
+    outline: none;
+    border: none;
+}
+
+.item:focus {
+    outline: none;
+    border: none;
 }

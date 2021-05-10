@@ -34,7 +34,7 @@ const Product = () => {
             </div>
             <div className='products-sale'>
                 <Grid container spacing={1} styles={{ margin: '0px', padding: '0px'}}>
-                    <Grid item xs={12} md={2}>
+                    <Grid item xs={12} md={2} className='grid-cate'>
                        <div className='cate-section'>
                            <h2>VER</h2>
                            <hr/>

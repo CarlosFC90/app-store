@@ -47,6 +47,10 @@
     color: white;
 }
 
+.social-contact-links p:hover {
+    color: #8d8d8d;
+}
+
 .left-form .social-contact-links .social-link {
     display: inline-block;
     height: 40px;
@@ -95,7 +99,7 @@
 }
 
 .right-form {
-    background-color: rgb(187, 186, 186);
+    background-color: rgb(230, 230, 230);
     padding: 50px 20px 246px 20px;
     border-radius: 0px 5px 5px 0px;
 }

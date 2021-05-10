@@ -122,8 +122,8 @@ function Stock() {
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={6}>
                                     <div className='form-left'>
-                                        <TextField className='textfield-row' id="name-art" name="name" label="Nombre de Articulo" variant="outlined" />
-                                        <Grid container spacing={1}>
+                                        <TextField className='textfield-row form-control' id="name-art" name="name" label="Nombre de Articulo" variant="outlined" />    
+                                        <Grid container spacing={1} style={{marginTop: '10px'}}>
                                             <Grid item xs={12} md={6}>
                                                 <Button className='button-cate' color="secondary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                                                     Categorias &nbsp;<i className="fas fa-chevron-down"></i>
@@ -134,7 +134,7 @@ function Stock() {
                                                     keepMounted
                                                     open={Boolean(anchorEl)}
                                                     onClose={handleClose}
-                                                    className='menu-button-cate'
+                                                    className='menu-button-cate form-control'
                                                     name="category"
                                                 >
                                                     <MenuItem onClick={handleClose} value={'Electrodomestico'}>Electrodomesticos</MenuItem>
@@ -151,33 +151,36 @@ function Stock() {
                                 </Grid>
                                 <Grid item xs={12} md={3}>
                                     <div className='form-center'>
-                                        <Grid container spacing={1}>
-                                            <TextField
-                                                id="outlined-multiline-static"
-                                                label="Descripción del Producto"
-                                                multiline
-                                                rows={4}
-                                                variant="outlined"
-                                                className='textfield'
-                                                name="description"
-                                            />
-                                        </Grid>
+                                            <Grid container spacing={1}>
+                                                <TextField
+                                                    id="outlined-multiline-static"
+                                                    label="Descripción del Producto"
+                                                    multiline
+                                                    rows={5}
+                                                    variant="outlined"
+                                                    className="textfield form-control"
+                                                    name="description"
+                                                />
+                                            </Grid>
                                     </div>
                                 </Grid>
                                 <Grid item xs={12} md={3}>
                                     <div className='form-right'>
-                                        <Grid item sm={12}>
-                                            <h4>INGRESAR IMAGEN</h4>
-                                            <Button
-                                                variant="contained"
-                                                color="primary"
-                                                component="label"
-                                            >
-                                                Cargar imagen &nbsp; <i className="far fa-image"></i>
-                                            <input style={{ display: "none" }} type="file" id="image" name="image" accept="image/png, image/jpeg" onChange={e => setImg(e.target.files[0])} />
-                                            </Button>
-                                            <span style={{ marginLeft: 5 }}>{img ? img.name : null}</span>
-                                        </Grid>
+                                            <Grid item sm={12}>
+                                                <h4>INGRESAR IMAGEN</h4>
+                                                    <Button
+                                                        variant="contained"
+                                                        color="primary"
+                                                        size="large"
+                                                        component="label"
+                                                    >
+                                                        Cargar imagen &nbsp; <i className="far fa-image"></i>
+                                                        <div className='form-group'>
+                                                            <input className='form-control' style={{ display: "none" }} type="file" id="image" name="image" accept="image/png, image/jpeg" onChange={e => setImg(e.target.files[0])} />
+                                                        </div>
+                                                    </Button>
+                                                    <span style={{ marginLeft: 5 }}>{img ? img.name : null}</span>
+                                            </Grid>
                                     </div>
                                 </Grid>
                             </Grid>

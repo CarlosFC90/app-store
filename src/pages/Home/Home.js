@@ -10,6 +10,10 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import CardCarousel from '../../components/CardCarousel/CardCarousel'
 
 import StoreImg from '../../assets/images/App-Store.jpg';
 
@@ -26,12 +30,85 @@ const Home = () => {
 
     const classes = useStyles();
 
+    let configSlider = {
+        dots: true,
+        infinite: true,
+        scroll: true,
+        //speed: 800,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: true,
+        autoplaySpeed: 2000,
+        pauseOnHover: true,
+        cssEase: 'linear',
+        responsive: [
+            {
+              breakpoint: 960,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 1,
+                infinite: true,
+                dots: true
+              }
+            },
+            {
+              breakpoint: 768,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                initialSlide: 2
+              }
+            },
+            {
+              breakpoint: 424,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                initialSlide: 1
+              }
+            },
+            {
+                breakpoint: 310,
+                settings: {
+                  slidesToShow: 1,
+                  slidesToScroll: 1
+                }
+            }
+        ]
+    }
+
     return (
         <div className='container-home'>
             <HeroSection/>
             <div className='info'>
-                <h2 className='title-home'>Bienvenid@!!</h2>
+                <h2 className='title-home'><i className="fas fa-mouse"></i> Bienvenid@ a Shopping Online <i className="fab fa-shopify"></i></h2>
                 <div className='sale-container'>
+                    <div className='carousel-container'>
+                        <Grid>
+                            <Slider {...configSlider}>
+                                <div className='item'>
+                                    <CardCarousel
+                                        srcImage={StoreImg}
+                                    />
+                                </div>
+                                <div className='item'>
+                                    <CardCarousel
+                                        srcImage={StoreImg}
+                                    />
+                                </div>
+                                <div className='item'>
+                                    <CardCarousel
+                                        srcImage={StoreImg}
+                                    />
+                                </div>
+                                <div className='item'>
+                                    <CardCarousel
+                                        srcImage={StoreImg}
+                                    />
+                                </div>
+                            </Slider>
+                        </Grid>
+                    </div>
                     <h2 className='title-sale'>OFERTAS DESTACADAS</h2>
                     <Grid container spacing={3} style={{padding: '25px 15px'}}>
                         <Grid item xs={12} md={4}>

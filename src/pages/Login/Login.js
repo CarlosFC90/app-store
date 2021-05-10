@@ -29,31 +29,33 @@ class Login extends Component {
             <div className='container-login'>
                 <div className='container-form'>
                     <img src={Logo} className="img-login" alt=""/>
-                    <div className='form-group'>
-                        <label><b>Email: </b></label>
-                        <br/>
-                        <Input 
-                            className='form-control' 
-                            type='email'
-                            name='email'
-                            onChange={this.handleChange}
-                        />
-                        <br/>
-                        <br/>
-                        <label><b>Contraseña: </b></label>
-                        <br/>
-                        <Input
-                            className='form-control'
-                            type='password'
-                            name='password'
-                            onChange={this.handleChange}
-                        />
-                        <br/>
-                        <div className='container-button'>
-                            <Button className='button' variant="contained" color="primary">Iniciar Sesión</Button>
+                    <form action="/new-user" method="POST">
+                        <div className='form-group'>
+                            <label><b>Email: </b></label>
+                            <br/>
+                            <Input 
+                                className='form-control' 
+                                type='email'
+                                name='email'
+                                onChange={this.handleChange}
+                            />
+                            <br/>
+                            <br/>
+                            <label><b>Contraseña: </b></label>
+                            <br/>
+                            <Input
+                                className='form-control'
+                                type='password'
+                                name='password'
+                                onChange={this.handleChange}
+                            />
+                            <br/>
+                            <div className='container-button'>
+                                <Button className='button' variant="contained" color="primary">Iniciar Sesión</Button>
+                            </div>
+                            <p style={{marginTop: '7px'}}>No tenés una cuenta? -- <Link to='/register' style={{textDecoration: 'none'}}>Registrar</Link></p>
                         </div>
-                        <p style={{marginTop: '7px'}}>No tenés una cuenta? -- <Link to='/register' style={{textDecoration: 'none'}}>Registrar</Link></p>
-                    </div>
+                    </form>
                 </div>
             </div>
         )
