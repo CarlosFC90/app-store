@@ -210,7 +210,7 @@ function Stock() {
                                                     row.name
                                                 </StyledTableCell>
                                                 <StyledTableCell align="center">row.photo</StyledTableCell>
-                                                <StyledTableCell align="center">row.calories</StyledTableCell>
+                                                <StyledTableCell align="center">row.price</StyledTableCell>
                                                 <StyledTableCell align="center">
                                                     <IconButton aria-label="delete" color="secondary">
                                                         <DeleteIcon />
@@ -251,7 +251,7 @@ function Stock() {
                                                     row.name
                                                 </StyledTableCell>
                                                 <StyledTableCell align="center">row.photo</StyledTableCell>
-                                                <StyledTableCell align="center">row.calories</StyledTableCell>
+                                                <StyledTableCell align="center">row.price</StyledTableCell>
                                                 <StyledTableCell align="center">
                                                     <IconButton aria-label="delete" color="secondary">
                                                         <DeleteIcon />
@@ -292,7 +292,7 @@ function Stock() {
                                                     row.name
                                                 </StyledTableCell>
                                                 <StyledTableCell align="center">row.photo</StyledTableCell>
-                                                <StyledTableCell align="center">row.calories</StyledTableCell>
+                                                <StyledTableCell align="center">row.price</StyledTableCell>
                                                 <StyledTableCell align="center">
                                                     <IconButton aria-label="delete" color="secondary">
                                                         <DeleteIcon />
@@ -333,7 +333,7 @@ function Stock() {
                                                     row.name
                                                 </StyledTableCell>
                                                 <StyledTableCell align="center">row.photo</StyledTableCell>
-                                                <StyledTableCell align="center">row.calories</StyledTableCell>
+                                                <StyledTableCell align="center">row.price</StyledTableCell>
                                                 <StyledTableCell align="center">
                                                     <IconButton aria-label="delete" color="secondary">
                                                         <DeleteIcon />
