@@ -17,7 +17,7 @@ const Contact = () => {
                 <Grid container spacing={0}>
                     <Grid item xs={12} md={6}>
                         <div className='left-form'>
-                            <img src={Logo} class="imgContact" alt="Logo"/>
+                            <img src={Logo} className="imgContact" alt="Logo"/>
                             <div className='social-contact-links'>
                                 <Grid container spacing={2}>
                                     <Grid item xs={2}>
@@ -64,16 +64,16 @@ const Contact = () => {
                             <h2><i>Datos Requeridos</i></h2>
                             <Grid container spacing={1}>
                                 <Grid item xs={12} md={6}>
-                                    <TextField id="filled-basic" label="Nombre" variant="filled" style={{ width: '100%', marginBottom: '20px'}}/>
+                                    <TextField id='name' label="Nombre" variant="filled" style={{ width: '100%', marginBottom: '20px'}}/>
                                 </Grid>
                                 <Grid item xs={12} md={6}>
-                                    <TextField id="filled-basic" label="email" type='email' variant="filled" style={{ width: '100%', marginBottom: '20px'}}/>
+                                    <TextField id='email' label="email" type='email' variant="filled" style={{ width: '100%', marginBottom: '20px'}}/>
                                 </Grid>
                                 <Grid item xs={12} md={6}>
-                                    <TextField id="filled-basic" label="Ciudad" type='text' variant="filled" style={{ width: '100%', marginBottom: '20px'}}/>
+                                    <TextField id='city' label="Ciudad" type='text' variant="filled" style={{ width: '100%', marginBottom: '20px'}}/>
                                 </Grid>
                                 <Grid item xs={12} md={6}>
-                                    <TextField id="filled-basic" label="Provincia" type='text' variant="filled" style={{ width: '100%', marginBottom: '20px'}}/>
+                                    <TextField id='province' label="Provincia" type='text' variant="filled" style={{ width: '100%', marginBottom: '20px'}}/>
                                 </Grid>
                                 <Grid item xs={12}>
                                     <TextField

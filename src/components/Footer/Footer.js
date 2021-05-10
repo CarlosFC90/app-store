@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 import Logo from '../../assets/images/shopping-logo.jpg';
 
 const Footer = () => {
+
+    const main = () => {
+        if (!localStorage.getItem('token')) {
+            window.location.href = '/';
+        }
+    }
+
     return (
         <div className='footer'>
             <div className='container-footer'>
@@ -18,10 +25,10 @@ const Footer = () => {
                     <div className='footer-col'>
                         <h3>Secciones</h3>
                         <ul>
-                            <li><Link to='/' className='link'><b>Home</b></Link><br/></li>
-                            <li><Link to='/products' className='link'><b>Productos</b></Link><br/></li>
-                            <li><Link to='/contact' className='link'><b>Contacto</b></Link><br/></li>
-                            <li><Link to='/register' className='link'><b>Registrar</b></Link><br/></li>
+                            <li><Link to='/home' className='link' onClick={main}><b>Home</b></Link><br/></li>
+                            <li><Link to='/products' className='link' onClick={main}><b>Productos</b></Link><br/></li>
+                            <li><Link to='/contact' className='link' onClick={main}><b>Contacto</b></Link><br/></li>
+                            <li><Link to='/register' className='link' onClick={main}><b>Registrar</b></Link><br/></li>
                         </ul>
                     </div>
                     <div className='footer-col'>

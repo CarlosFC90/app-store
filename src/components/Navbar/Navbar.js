@@ -2,13 +2,6 @@ import React, {useState, useEffect, useRef} from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 import Logo from '../../assets/images/shopping-logo.jpg';
-import Button from '@material-ui/core/Button';
-import MenuItem from '@material-ui/core/MenuItem';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import MenuList from '@material-ui/core/MenuList';
 
 function NavBar() {
     const [click, setClick] = useState(false);
@@ -36,22 +29,13 @@ function NavBar() {
 
     useEffect(() => {
         showButton();
+
     }, [])
 
     window.addEventListener('resize', showButton);
 
-    const handleToggle = () => {
-        setOpen((prevOpen) => !prevOpen);
-    };
-
-    function handleListKeyDown(event) {
-        if (event.key === 'Tab') {
-          event.preventDefault();
-          setOpen(false);
-        }
-    }
-
     const prevOpen = useRef(open);
+
     useEffect(() => {
         if (prevOpen.current === true && open === false) {
         anchorRef.current.focus();
@@ -59,6 +43,17 @@ function NavBar() {
 
         prevOpen.current = open;
     }, [open]);
+
+    const logout = () => {
+        console.log('Button logout');
+        localStorage.removeItem("token");
+    }
+
+    const main = () => {
+        if (!localStorage.getItem('token')) {
+            window.location.href = '/';
+        }
+    }
 
     return (
         <>
@@ -72,49 +67,29 @@ function NavBar() {
                     </div>
                     <ul className={ click ? 'nav-menu active' : 'nav-menu'}>
                         <li className="nav-item">
-                            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                            <Link to='/home' onChange={main} className='nav-links' onClick={closeMobileMenu, main}>
                                 <b>Inicio</b>
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/products' className='nav-links' onClick={closeMobileMenu}>
-                                <b>Productos</b>
+                            <Link to='/products' className='nav-links' onClick={closeMobileMenu, main}>
+                                <b>Tienda</b>
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/contact' className='nav-links' onClick={closeMobileMenu}>
+                            <Link to='/contact' className='nav-links' onClick={closeMobileMenu, main}>
                                 <b>Contacto</b>
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Button
-                            className='nav-links'
-                            ref={anchorRef}
-                            aria-controls={open ? 'menu-list-grow' : undefined}
-                            aria-haspopup="true"
-                            onClick={handleToggle}
-                            >
-                                <i className="fas fa-user-circle" style={{ color: 'white', fontSize: '25px'}}></i>
-                            </Button>
-                            <Popper open={open} anchorEl={anchorRef.current} role={undefined} transition disablePortal>
-                            {({ TransitionProps, placement }) => (
-                                <Grow
-                                {...TransitionProps}
-                                style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                                >
-                                <Paper>
-                                    <ClickAwayListener onClickAway={closeMobileMenu}>
-                                    <MenuList onClick={closeMobileMenu}  autoFocusItem={open} id="menu-list-grow" onKeyDown={handleListKeyDown}>
-                                        <MenuItem onClick={closeMobileMenu}><Link className="link-menu" to='/login'>Ingresar</Link></MenuItem>
-                                        <MenuItem onClick={closeMobileMenu}><Link className="link-menu" to='/register'>Registrar</Link></MenuItem>
-                                        <MenuItem onClick={closeMobileMenu}><Link className="link-menu" to='/stock'>Ingresar Articulo</Link></MenuItem>
-                                        <MenuItem onClick={closeMobileMenu}>Logout</MenuItem>
-                                    </MenuList>
-                                    </ClickAwayListener>
-                                </Paper>
-                                </Grow>
-                            )}
-                            </Popper>
+                            <Link to='/stock' className='nav-links' onClick={closeMobileMenu, main}>
+                                <b>Productos</b>
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to='/' className='nav-links' onClick={closeMobileMenu}>
+                                <b onClick={logout}> Salir </b>
+                            </Link>    
                         </li>
                     </ul>
                 </div>  

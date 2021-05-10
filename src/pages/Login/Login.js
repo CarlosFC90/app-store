@@ -9,11 +9,6 @@ import axios from 'axios';
 import Alert from '@material-ui/lab/Alert';
 
 class Login extends Component {
-
-    constructor(props) {
-        super(props);
-
-    }
     
     state = {
         form: {
@@ -43,9 +38,8 @@ class Login extends Component {
         axios.post(url, this.state.form)
         .then( res => {
             if (res.status === 200) {
-                console.log(res);
                 localStorage.setItem("token", res.data.idToken);
-                this.props.history.push('/');
+                this.props.history.push('/home');
             }
         }).catch( error => {
             console.log(error);

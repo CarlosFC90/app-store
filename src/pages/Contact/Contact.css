@@ -126,6 +126,15 @@
         left: 40%;
         font-size: 40px;
     }
+
+    .social-contact-links {
+        text-align: left;
+        padding: 0px 100px;
+    }
+
+    .social-media-contact {
+        padding: 55px 100px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -137,5 +146,18 @@
         top: 43%;
         left: 30%;
         font-size: 30px;
+    }
+
+    .left-form {
+        padding-left: 5px;
+    }
+
+    .social-contact-links {
+        text-align: left;
+        padding: 0px 30px;
+    }
+
+    .social-media-contact {
+        padding: 55px 30px;
     }
 }
