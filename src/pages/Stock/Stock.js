@@ -74,11 +74,6 @@ function Stock() {
 
     const classes = useStyles();
 
-    const handleUploadImg = e => {
-        setImg(e.target.files[0]);
-        console.log(setImg);
-    }
-
     const loadProductToFirebase = () => {
         setLoading(true);
         let newProduct = {
@@ -87,18 +82,6 @@ function Stock() {
             image: false,
             info: {},
         };
-    }
-
-    const submitNewShop = () => {
-        // Realizar validaciones
-        setNameError(false);
-        if (name.length <= 0) {
-            setNameError(true);
-        } else {
-            // No hubo problemas
-            setNameError(false);
-            loadProductToFirebase();
-        }
     }
 
     const cleanForm = () => {
