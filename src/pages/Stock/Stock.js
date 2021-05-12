@@ -23,14 +23,19 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
+import {urlApi, apiKey} from '../../Services/ApiRest';
+import axios from 'axios';
+
 function Stock() {
     const [anchorEl, setAnchorEl] = useState(null);
-    const [img, setImg] = useState(null);
-    const [name, setName] = useState('');
-    const [category, setCategory] = useState('');
-
-    const [nameError, setNameError] = useState(false);
-    const [loading, setLoading] = useState(false);
+    const [img, setImg] = useState();
+    const [product, setProduct] = useState({
+        name: '',
+        category: '',
+        price: 0,
+        description: '',
+        image: ''
+    });
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -74,22 +79,6 @@ function Stock() {
 
     const classes = useStyles();
 
-    const loadProductToFirebase = () => {
-        setLoading(true);
-        let newProduct = {
-            name: name,
-            category: category,
-            image: false,
-            info: {},
-        };
-    }
-
-    const cleanForm = () => {
-        setName('');
-        setCategory('');
-        setImg(null);
-    }
-
     return (
         <div>
             <div className='banner-container-stock'>
@@ -101,7 +90,72 @@ function Stock() {
                     <div className='card'>
                         <div className='card-title'><h1>Ingreso de Productos</h1></div>
                         <hr/>
-                        <form>
+                        <Grid container className='grid-container'>
+                            <form>
+                                <div className='form-group' style={{ margin: '20px'}}>
+                                    <Grid item xs={12}>
+                                        <TextField type='text' className='form-control' id="name-art" name="name" label="Nombre de Articulo" variant="outlined" style={{ width: '100%'}}/>    
+                                    </Grid>
+                                </div>
+                                <div className='form-group' style={{ margin: '20px'}}>
+                                    <Grid item xs={12}>
+                                        <Button className='button-cate' variant="contained" color="secondary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
+                                            Categorias &nbsp;<i className="fas fa-chevron-down"></i>
+                                        </Button>
+                                        <Menu
+                                            id="simple-menu"
+                                            anchorEl={anchorEl}
+                                            keepMounted
+                                            open={Boolean(anchorEl)}
+                                            onClose={handleClose}
+                                            className='form-control'
+                                            name="category"
+                                        >
+                                            <MenuItem onClick={handleClose} value={'Electrodomestico'}>Electrodomesticos</MenuItem>
+                                            <MenuItem onClick={handleClose} value={'Informatica'}>Informática</MenuItem>
+                                            <MenuItem onClick={handleClose} value={'Hogar'}>Hogar</MenuItem>
+                                            <MenuItem onClick={handleClose} value={'Jardineria'}>Jardineria</MenuItem>
+                                        </Menu>
+                                    </Grid>
+                                </div>
+                                <div className='form-group' style={{ margin: '20px'}}>
+                                    <Grid item xs={12}>
+                                        <TextField className='form-control' id="price-art" label="Precio" name="price" variant="outlined" />
+                                    </Grid>
+                                </div>
+                                <div className='form-group' style={{ margin: '20px'}}>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            id="outlined-multiline-static"
+                                            label="Descripción del Producto"
+                                            multiline
+                                            rows={5}
+                                            variant="outlined"
+                                            className="form-control"
+                                            name="description"
+                                        />
+                                    </Grid>
+                                </div>
+                                <div className='form-group' style={{ margin: '20px'}}>
+                                    <Grid item sm={12}>
+                                        <h4 style={{textAlign: 'center', border: '1px solid #fff'}}>INGRESAR IMAGEN</h4>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                size="large"
+                                                component="label"
+                                            >
+                                                Cargar imagen &nbsp; <i className="far fa-image"></i>
+                                                <div className='form-group'>
+                                                    <input className='form-control' style={{ display: "none" }} type="file" id="image" name="image" accept="image/png, image/jpeg" onChange={e => setImg(e.target.files[0])} />
+                                                </div>
+                                            </Button>
+                                            <span style={{ marginLeft: 5 }}>{img ? img.name : null}</span>
+                                    </Grid>
+                                </div>
+                            </form>
+                        </Grid>
+                        {/* <form>
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={6}>
                                     <div className='form-left'>
@@ -167,7 +221,7 @@ function Stock() {
                                     </div>
                                 </Grid>
                             </Grid>
-                        </form>
+                        </form> */}
                         <div className='button-save'>
                             <Button
                                 variant="contained"
@@ -350,7 +404,6 @@ function Stock() {
                         </Accordion>
                     </div>
                 </div>
-                
             </div>
         </div>
     )

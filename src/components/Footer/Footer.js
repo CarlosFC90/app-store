@@ -26,7 +26,7 @@ const Footer = () => {
                         <h3>Secciones</h3>
                         <ul>
                             <li><Link to='/home' className='link' onClick={main}><b>Home</b></Link><br/></li>
-                            <li><Link to='/products' className='link' onClick={main}><b>Productos</b></Link><br/></li>
+                            <li><Link to='/products' className='link' onClick={main}><b>Tienda</b></Link><br/></li>
                             <li><Link to='/contact' className='link' onClick={main}><b>Contacto</b></Link><br/></li>
                             <li><Link to='/register' className='link' onClick={main}><b>Registrar</b></Link><br/></li>
                         </ul>
