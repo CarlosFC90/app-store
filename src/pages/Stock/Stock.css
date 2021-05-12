@@ -84,6 +84,7 @@
 
 .menu-button-cate {
     width: 100%;
+    color: black;
 }
 
 .acordion-container {
@@ -126,6 +127,10 @@
         text-align: center;
     }
 
+    .card-container {
+        padding: 100px; 
+    }
+
 }
 
 @media screen and (max-width: 768px) {
@@ -145,6 +150,10 @@
 
     .card {
         margin: 0px 5px;
+    }
+
+    .card-container {
+        padding: 10px; 
     }
 
     .form-left {

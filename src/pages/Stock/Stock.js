@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button, Grid } from '@material-ui/core';
 import TextField from '@material-ui/core/TextField';
 import StockBanner from '../../assets/images/stock-banner.png';
@@ -24,19 +24,57 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-import { urlDataBase } from '../../Services/ApiRest';
+import { urlDataBase, productDataBase, auth } from '../../Services/ApiRest';
 import axios from 'axios';
 
+
+export const ProductDB = (name) => {
+    const [data, setData] = useState();
+
+    function Get(data) {
+
+        return data ? Object.keys(data).map(key => ({
+            id: key,
+            name: data[key].name,
+            price: data[key].price,
+            description: data[key].description,
+            category: data[key].category,
+            image: data[key].image
+        })): null
+    }
+  
+    useEffect(() => {
+      const fetchData = async () => {
+        let url = urlDataBase + productDataBase + localStorage.getItem("token");
+        const res = await axios.get(url)
+        
+        const data = Get(res.data);
+
+        setData(data);
+      };
+      fetchData();
+    }, [name]);
+    return [data];
+};
+
 function Stock() {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [img, setImg] = useState();
-    const [product, setProduct] = useState({
+
+    const resetProduct = {
         name: '',
         category: '',
         price: 0,
         description: '',
         image: ''
-    });
+    }   
+
+    const [lastUpdate, setLastUpdate] = useState('');
+    const [anchorEl, setAnchorEl] = useState(null);
+    const [img, setImg] = useState();
+    const [edit, setEdit] = useState(false);
+    const [products] = ProductDB(lastUpdate);
+    const [product, setProduct] = useState(resetProduct);
+
+
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -80,23 +118,52 @@ function Stock() {
 
     const classes = useStyles();
 
-    const handleInputChange = (e) => {
-        console.log("e.target.value");
-        setProduct({
-            ...product,
-            [e.target.name]: e.target.value
-        });
-
+    const handleInputChange = async (e) => {
         //setImg(e.target.files[0]);
-        console.log(product.category);
+
+        const {name, value} = e.target;
+        await setProduct((prevState) => ({
+            ...prevState,
+            [name]: value
+        })); 
     }
 
-    const handleSubmit = e => {
-        let url = urlDataBase + localStorage.getItem("token");
-        axios.get(url)
-        .then( res => {
-            console.log(res.data);
-        })
+    const handleSubmit = async e => {
+        if(product.category.length === 0 || product.name.length === 0) {
+            return;
+        } 
+        if(product.id) {
+            const id = product.id;
+            delete product.id;
+            await handlePatch(id, product);
+            setLastUpdate('Patch');
+        } else {
+            await handlePost(product);
+            setLastUpdate('Post');
+        }
+        setProduct(resetProduct);
+        console.log(product);
+    }
+
+    const handleEdit = async items => {
+        await setProduct(items); 
+    }
+    
+    const handlePatch = async(id, body) => {
+        let url = urlDataBase + "/products/" + id + "/" + auth + localStorage.getItem("token");
+        await axios.patch(url, body); 
+    }
+
+    const handlePost = async (body) => {
+        let url = urlDataBase + productDataBase + localStorage.getItem("token");
+        await axios.post(url, body);
+    }
+
+
+    const DeleteProduct = async (id) => {
+        let url = urlDataBase + "/products/" + id + "/" + auth + localStorage.getItem("token");
+        await axios.delete(url);
+        setLastUpdate('Delete');
     }
 
     return (
@@ -123,6 +190,7 @@ function Stock() {
                                             variant="outlined" 
                                             style={{ width: '100%'}}
                                             onChange={handleInputChange}
+                                            value={product.name}
                                         />    
                                     </Grid>
                                 </div>
@@ -140,9 +208,10 @@ function Stock() {
                                             className='form-control'
                                             name="category"
                                             onChange={handleInputChange}
+                                            value={product.category}
                                         >
-                                            <MenuItem onClick={handleClose} value={'Frutas'}>Frutas</MenuItem>
-                                            <MenuItem onClick={handleClose} value={'Verduras'}>Verduras</MenuItem>
+                                            <MenuItem onClick={handleClose} value={'Fruta'}>Fruta</MenuItem>
+                                            <MenuItem onClick={handleClose} value={'Verdura'}>Verdura</MenuItem>
                                         </Select>
                                     </Grid>
                                 </div>
@@ -156,6 +225,7 @@ function Stock() {
                                             variant="outlined"
                                             onChange={handleInputChange} 
                                             type='number'
+                                            value={product.price}
                                         />
                                     </Grid>
                                 </div>
@@ -170,6 +240,7 @@ function Stock() {
                                             className="form-control"
                                             name="description"
                                             onChange={handleInputChange}
+                                            value={product.description}
                                         />
                                     </Grid>
                                 </div>
@@ -192,6 +263,7 @@ function Stock() {
                                                         name="image" 
                                                         accept="image/png, image/jpeg" 
                                                         onChange={handleInputChange}
+                                                        value={product.image}
                                                     />
                                                 </div>
                                             </Button>
@@ -238,21 +310,35 @@ function Stock() {
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            <StyledTableRow>
-                                                <StyledTableCell component="th" scope="row">
-                                                    row.name
-                                                </StyledTableCell>
-                                                <StyledTableCell align="center">row.photo</StyledTableCell>
-                                                <StyledTableCell align="center">row.price</StyledTableCell>
-                                                <StyledTableCell align="center">
-                                                    <IconButton aria-label="delete" color="secondary">
-                                                        <DeleteIcon />
-                                                    </IconButton>
-                                                    <IconButton aria-label="edit" color="primary">
-                                                        <EditIcon />
-                                                    </IconButton>
-                                                </StyledTableCell>
-                                            </StyledTableRow>
+                                            { products ? products.map((item) => item.category === "Fruta" ? (
+                                                    <StyledTableRow key={item}>
+                                                        <StyledTableCell component="th" scope="row" style={{color: 'black'}}>
+                                                            {item.name}
+                                                        </StyledTableCell>
+                                                        <StyledTableCell align="center">
+                                                            <img src={item.image} alt="productImg" style={{ height: '50px', width: '50px'}}/>
+                                                        </StyledTableCell>
+                                                        <StyledTableCell align="center">
+                                                            {item.price}
+                                                        </StyledTableCell>
+                                                        <StyledTableCell align="center">
+                                                            <IconButton 
+                                                                aria-label="delete" 
+                                                                color="secondary"
+                                                                onClick={() => DeleteProduct(item.id)}    
+                                                            >
+                                                                <DeleteIcon />
+                                                            </IconButton>
+                                                            <IconButton 
+                                                                aria-label="edit" 
+                                                                color="primary"
+                                                                onClick={() => handleEdit(item)}
+                                                            >
+                                                                <EditIcon />
+                                                            </IconButton>
+                                                        </StyledTableCell>
+                                                    </StyledTableRow>
+                                            ): null ): null}
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
@@ -279,21 +365,35 @@ function Stock() {
                                             </TableRow>
                                         </TableHead>
                                         <TableBody>
-                                            <StyledTableRow>
-                                                <StyledTableCell component="th" scope="row">
-                                                    row.name
-                                                </StyledTableCell>
-                                                <StyledTableCell align="center">row.photo</StyledTableCell>
-                                                <StyledTableCell align="center">row.price</StyledTableCell>
-                                                <StyledTableCell align="center">
-                                                    <IconButton aria-label="delete" color="secondary">
-                                                        <DeleteIcon />
-                                                    </IconButton>
-                                                    <IconButton aria-label="edit" color="primary">
-                                                        <EditIcon />
-                                                    </IconButton>
-                                                </StyledTableCell>
-                                            </StyledTableRow>
+                                            { products ? products.map((item) => item.category === "Verdura" ? (
+                                                        <StyledTableRow key={item}>
+                                                            <StyledTableCell component="th" scope="row" style={{color: 'black'}}>
+                                                                {item.name}
+                                                            </StyledTableCell>
+                                                            <StyledTableCell align="center">
+                                                                <img src={item.image} alt="productImg" style={{ height: '50px', width: '50px'}}/>
+                                                            </StyledTableCell>
+                                                            <StyledTableCell align="center">
+                                                                {item.price}
+                                                            </StyledTableCell>
+                                                            <StyledTableCell align="center">
+                                                                <IconButton 
+                                                                    aria-label="delete" 
+                                                                    color="secondary"
+                                                                    onClick={() => DeleteProduct(item.id)} 
+                                                                >
+                                                                    <DeleteIcon />
+                                                                </IconButton>
+                                                                <IconButton 
+                                                                    aria-label="edit" 
+                                                                    color="primary"
+                                                                    onClick={() => handleEdit(item)}
+                                                                >
+                                                                    <EditIcon />
+                                                                </IconButton>
+                                                            </StyledTableCell>
+                                                        </StyledTableRow>
+                                                ): null ): null}
                                         </TableBody>
                                     </Table>
                                 </TableContainer>
