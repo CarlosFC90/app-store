@@ -4,6 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import StockBanner from '../../assets/images/stock-banner.png';
 import './Stock.css';
 import SaveIcon from '@material-ui/icons/Save';
+import Select from '@material-ui/core/Select';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Accordion from '@material-ui/core/Accordion';
@@ -23,7 +24,7 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-import {urlApi, apiKey} from '../../Services/ApiRest';
+import { urlDataBase } from '../../Services/ApiRest';
 import axios from 'axios';
 
 function Stock() {
@@ -79,6 +80,25 @@ function Stock() {
 
     const classes = useStyles();
 
+    const handleInputChange = (e) => {
+        console.log("e.target.value");
+        setProduct({
+            ...product,
+            [e.target.name]: e.target.value
+        });
+
+        //setImg(e.target.files[0]);
+        console.log(product.category);
+    }
+
+    const handleSubmit = e => {
+        let url = urlDataBase + localStorage.getItem("token");
+        axios.get(url)
+        .then( res => {
+            console.log(res.data);
+        })
+    }
+
     return (
         <div>
             <div className='banner-container-stock'>
@@ -91,10 +111,19 @@ function Stock() {
                         <div className='card-title'><h1>Ingreso de Productos</h1></div>
                         <hr/>
                         <Grid container className='grid-container'>
-                            <form>
+                            <form onSubmit={handleSubmit}>
                                 <div className='form-group' style={{ margin: '20px'}}>
                                     <Grid item xs={12}>
-                                        <TextField type='text' className='form-control' id="name-art" name="name" label="Nombre de Articulo" variant="outlined" style={{ width: '100%'}}/>    
+                                        <TextField 
+                                            type='text' 
+                                            className='form-control' 
+                                            id="name" 
+                                            name="name" 
+                                            label="Nombre de Articulo" 
+                                            variant="outlined" 
+                                            style={{ width: '100%'}}
+                                            onChange={handleInputChange}
+                                        />    
                                     </Grid>
                                 </div>
                                 <div className='form-group' style={{ margin: '20px'}}>
@@ -102,7 +131,7 @@ function Stock() {
                                         <Button className='button-cate' variant="contained" color="secondary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
                                             Categorias &nbsp;<i className="fas fa-chevron-down"></i>
                                         </Button>
-                                        <Menu
+                                        <Select
                                             id="simple-menu"
                                             anchorEl={anchorEl}
                                             keepMounted
@@ -110,17 +139,24 @@ function Stock() {
                                             onClose={handleClose}
                                             className='form-control'
                                             name="category"
+                                            onChange={handleInputChange}
                                         >
-                                            <MenuItem onClick={handleClose} value={'Electrodomestico'}>Electrodomesticos</MenuItem>
-                                            <MenuItem onClick={handleClose} value={'Informatica'}>Informática</MenuItem>
-                                            <MenuItem onClick={handleClose} value={'Hogar'}>Hogar</MenuItem>
-                                            <MenuItem onClick={handleClose} value={'Jardineria'}>Jardineria</MenuItem>
-                                        </Menu>
+                                            <MenuItem onClick={handleClose} value={'Frutas'}>Frutas</MenuItem>
+                                            <MenuItem onClick={handleClose} value={'Verduras'}>Verduras</MenuItem>
+                                        </Select>
                                     </Grid>
                                 </div>
                                 <div className='form-group' style={{ margin: '20px'}}>
                                     <Grid item xs={12}>
-                                        <TextField className='form-control' id="price-art" label="Precio" name="price" variant="outlined" />
+                                        <TextField 
+                                            className='form-control' 
+                                            id="price-art" 
+                                            label="Precio" 
+                                            name="price" 
+                                            variant="outlined"
+                                            onChange={handleInputChange} 
+                                            type='number'
+                                        />
                                     </Grid>
                                 </div>
                                 <div className='form-group' style={{ margin: '20px'}}>
@@ -133,6 +169,7 @@ function Stock() {
                                             variant="outlined"
                                             className="form-control"
                                             name="description"
+                                            onChange={handleInputChange}
                                         />
                                     </Grid>
                                 </div>
@@ -147,7 +184,15 @@ function Stock() {
                                             >
                                                 Cargar imagen &nbsp; <i className="far fa-image"></i>
                                                 <div className='form-group'>
-                                                    <input className='form-control' style={{ display: "none" }} type="file" id="image" name="image" accept="image/png, image/jpeg" onChange={e => setImg(e.target.files[0])} />
+                                                    <input 
+                                                        className='form-control' 
+                                                        style={{ display: "none" }} 
+                                                        type="file" 
+                                                        id="image" 
+                                                        name="image" 
+                                                        accept="image/png, image/jpeg" 
+                                                        onChange={handleInputChange}
+                                                    />
                                                 </div>
                                             </Button>
                                             <span style={{ marginLeft: 5 }}>{img ? img.name : null}</span>
@@ -155,73 +200,6 @@ function Stock() {
                                 </div>
                             </form>
                         </Grid>
-                        {/* <form>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} md={6}>
-                                    <div className='form-left'>
-                                        <TextField className='textfield-row form-control' id="name-art" name="name" label="Nombre de Articulo" variant="outlined" />    
-                                        <Grid container spacing={1} style={{marginTop: '10px'}}>
-                                            <Grid item xs={12} md={6}>
-                                                <Button className='button-cate' color="secondary" aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}>
-                                                    Categorias &nbsp;<i className="fas fa-chevron-down"></i>
-                                                </Button>
-                                                <Menu
-                                                    id="simple-menu"
-                                                    anchorEl={anchorEl}
-                                                    keepMounted
-                                                    open={Boolean(anchorEl)}
-                                                    onClose={handleClose}
-                                                    className='menu-button-cate form-control'
-                                                    name="category"
-                                                >
-                                                    <MenuItem onClick={handleClose} value={'Electrodomestico'}>Electrodomesticos</MenuItem>
-                                                    <MenuItem onClick={handleClose} value={'Informatica'}>Informática</MenuItem>
-                                                    <MenuItem onClick={handleClose} value={'Hogar'}>Hogar</MenuItem>
-                                                    <MenuItem onClick={handleClose} value={'Jardineria'}>Jardineria</MenuItem>
-                                                </Menu>
-                                            </Grid>
-                                            <Grid item xs={12} md={6}>
-                                                <TextField className='textfield' id="price-art" label="Precio" name="price" variant="outlined" />
-                                            </Grid>
-                                        </Grid>
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12} md={3}>
-                                    <div className='form-center'>
-                                            <Grid container spacing={1}>
-                                                <TextField
-                                                    id="outlined-multiline-static"
-                                                    label="Descripción del Producto"
-                                                    multiline
-                                                    rows={5}
-                                                    variant="outlined"
-                                                    className="textfield form-control"
-                                                    name="description"
-                                                />
-                                            </Grid>
-                                    </div>
-                                </Grid>
-                                <Grid item xs={12} md={3}>
-                                    <div className='form-right'>
-                                            <Grid item sm={12}>
-                                                <h4>INGRESAR IMAGEN</h4>
-                                                    <Button
-                                                        variant="contained"
-                                                        color="primary"
-                                                        size="large"
-                                                        component="label"
-                                                    >
-                                                        Cargar imagen &nbsp; <i className="far fa-image"></i>
-                                                        <div className='form-group'>
-                                                            <input className='form-control' style={{ display: "none" }} type="file" id="image" name="image" accept="image/png, image/jpeg" onChange={e => setImg(e.target.files[0])} />
-                                                        </div>
-                                                    </Button>
-                                                    <span style={{ marginLeft: 5 }}>{img ? img.name : null}</span>
-                                            </Grid>
-                                    </div>
-                                </Grid>
-                            </Grid>
-                        </form> */}
                         <div className='button-save'>
                             <Button
                                 variant="contained"
@@ -229,6 +207,7 @@ function Stock() {
                                 size="large"
                                 startIcon={<SaveIcon />}
                                 type="submit"
+                                onClick={handleSubmit}
                             >
                                 Guardar
                             </Button>
@@ -245,7 +224,7 @@ function Stock() {
                             aria-controls="panel1a-content"
                             id="panel1a-header"
                             >
-                            <Typography className={classes.heading}><b>Electrodomesticos</b></Typography>
+                            <Typography className={classes.heading}><b>Frutas</b></Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <TableContainer component={Paper}>
@@ -286,89 +265,7 @@ function Stock() {
                             id="panel2a-header"
                             className='acordion'
                             >
-                            <Typography className={classes.heading}><b>Informática</b></Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <TableContainer component={Paper}>
-                                    <Table className={classes.table} aria-label="customized table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <StyledTableCell><b>Nombre</b></StyledTableCell>
-                                                <StyledTableCell align="center"><b>Imagen</b></StyledTableCell>
-                                                <StyledTableCell align="center"><b>Precio</b></StyledTableCell>
-                                                <StyledTableCell align="center"><b>Opciones</b></StyledTableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            <StyledTableRow>
-                                                <StyledTableCell component="th" scope="row">
-                                                    row.name
-                                                </StyledTableCell>
-                                                <StyledTableCell align="center">row.photo</StyledTableCell>
-                                                <StyledTableCell align="center">row.price</StyledTableCell>
-                                                <StyledTableCell align="center">
-                                                    <IconButton aria-label="delete" color="secondary">
-                                                        <DeleteIcon />
-                                                    </IconButton>
-                                                    <IconButton aria-label="edit" color="primary">
-                                                        <EditIcon />
-                                                    </IconButton>
-                                                </StyledTableCell>
-                                            </StyledTableRow>
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion>
-                            <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel2a-content"
-                            id="panel2a-header"
-                            className='acordion'
-                            >
-                            <Typography className={classes.heading}><b>Hogar</b></Typography>
-                            </AccordionSummary>
-                            <AccordionDetails>
-                                <TableContainer component={Paper}>
-                                    <Table className={classes.table} aria-label="customized table">
-                                        <TableHead>
-                                            <TableRow>
-                                                <StyledTableCell><b>Nombre</b></StyledTableCell>
-                                                <StyledTableCell align="center"><b>Imagen</b></StyledTableCell>
-                                                <StyledTableCell align="center"><b>Precio</b></StyledTableCell>
-                                                <StyledTableCell align="center"><b>Opciones</b></StyledTableCell>
-                                            </TableRow>
-                                        </TableHead>
-                                        <TableBody>
-                                            <StyledTableRow>
-                                                <StyledTableCell component="th" scope="row">
-                                                    row.name
-                                                </StyledTableCell>
-                                                <StyledTableCell align="center">row.photo</StyledTableCell>
-                                                <StyledTableCell align="center">row.price</StyledTableCell>
-                                                <StyledTableCell align="center">
-                                                    <IconButton aria-label="delete" color="secondary">
-                                                        <DeleteIcon />
-                                                    </IconButton>
-                                                    <IconButton aria-label="edit" color="primary">
-                                                        <EditIcon />
-                                                    </IconButton>
-                                                </StyledTableCell>
-                                            </StyledTableRow>
-                                        </TableBody>
-                                    </Table>
-                                </TableContainer>
-                            </AccordionDetails>
-                        </Accordion>
-                        <Accordion>
-                            <AccordionSummary
-                            expandIcon={<ExpandMoreIcon />}
-                            aria-controls="panel2a-content"
-                            id="panel2a-header"
-                            className='acordion'
-                            >
-                            <Typography className={classes.heading}><b>Jardineria</b></Typography>
+                            <Typography className={classes.heading}><b>Verduras</b></Typography>
                             </AccordionSummary>
                             <AccordionDetails>
                                 <TableContainer component={Paper}>

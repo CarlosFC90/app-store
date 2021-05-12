@@ -13,7 +13,8 @@ class Login extends Component {
     state = {
         form: {
             "email": '',
-            "password": ''
+            "password": '',
+            "returnSecureToken": true
         },
         error: false,
         errorMsg: ""
